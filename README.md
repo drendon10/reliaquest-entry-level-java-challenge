@@ -135,11 +135,13 @@ The API returns meaningful HTTP status codes:
 This project uses the Diffplug Spotless Gradle plugin for consistent formatting.
 
 To build, run:
-./gradlew spotlessApply
-./gradlew build
+
+- ./gradlew spotlessApply
+- ./gradlew build
 
 To run the API, run:
-./gradlew bootRun
+
+- ./gradlew bootRun
 
 By default, the API will be available at:
 
