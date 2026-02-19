@@ -61,14 +61,14 @@ In an actual production system, a database would be used instead of a hashmap.
 
 Returns a list of all employees.
 
-**Response:** 200 OK
+Response: 200 OK
 
 ### Get Employee by UUID
 
 **GET** /employees/{uuid}
 
 Returns a single employee based on the provided UUID.
-**Responses:**
+Responses:
 
 - 200 OK — employee found
 - 404 NOT FOUND — employee does not exist
@@ -79,7 +79,7 @@ Returns a single employee based on the provided UUID.
 
 Creates a new employee.
 
-**Responses:**
+Responses:
 
 - 201 CREATED — employee successfully created
 - 400 BAD REQUEST — invalid request body
@@ -94,7 +94,7 @@ To make the API more practical and demonstrate extensibility, I added additional
 
 Updates one or more employee fields.
 
-**Responses:**
+Responses:
 
 - 200 OK — employee updated
 - 404 NOT FOUND — employee does not exist
@@ -106,7 +106,7 @@ Updates one or more employee fields.
 
 Deletes an employee.
 
-**Responses:**
+Responses:
 
 - 204 NO CONTENT — employee deleted
 - 404 NOT FOUND — employee does not exist
