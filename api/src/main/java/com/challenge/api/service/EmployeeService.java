@@ -180,7 +180,7 @@ public class EmployeeService {
             e.setContractHireDate(req.getContractHireDate());
         }
 
-        // store already contains this object reference, but this makes intent explicit
+        // Store already contains this object reference, but we'll ensure to overwrite with updated data
         store.put(uuid, e);
         return e;
     }

@@ -4,7 +4,7 @@ import java.time.Instant;
 import lombok.Data;
 
 /**
- * Request Data Transfer Object (DTO) for making partial updates to an employee
+ * Request Data Transfer Object (DTO) for making partial updates to an employee.
  *
  * All fields are optional. If a field is null, it will not be changed.
  * Clients should not be allowed to change termination date so that field was left out.
