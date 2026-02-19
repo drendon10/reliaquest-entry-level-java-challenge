@@ -6,7 +6,7 @@
 
 This project exposes employee data through a secure REST API that can be consumed by the Employees-R-US SaaS platform via webhooks.
 
-Because the company’s existing employee management system is tightly coupled with other internal services, replacing it outright is not feasible. Instead, this API acts as a secure integration layer between the internal system and the external SaaS platform while migration occurs.
+Because the existing employee management system is tightly integrated with other internal services, replacing it immediately is not practical. Instead, this API serves as a secure integration layer between the internal system and the external SaaS platform during the migration period.
 
 With this implementation, we prioritize:
 
