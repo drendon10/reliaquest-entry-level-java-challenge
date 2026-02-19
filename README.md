@@ -78,6 +78,7 @@ Returns a single employee based on the provided UUID.
 **POST** /employees
 
 Creates a new employee.
+
 **Responses:**
 
 - 201 CREATED — employee successfully created
@@ -92,6 +93,7 @@ To make the API more practical and demonstrate extensibility, I added additional
 **PATCH** /employees/{uuid}
 
 Updates one or more employee fields.
+
 **Responses:**
 
 - 200 OK — employee updated
