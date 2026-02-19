@@ -1,5 +1,7 @@
 # ReliaQuest's Entry-Level Java Challenge
 
+#### By: Daniel Rendon
+
 ## Overview
 
 This project exposes employee data through a secure REST API that can be consumed by the Employees-R-US SaaS platform via webhooks.
