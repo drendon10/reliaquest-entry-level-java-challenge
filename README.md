@@ -1,54 +1,129 @@
 # ReliaQuest's Entry-Level Java Challenge
 
-Please keep the following in mind while working on this challenge:
-* Code implementations will not be graded for **correctness** but rather on practicality
-* Articulate clear and concise design methodologies, if necessary
-* Use clean coding etiquette
-  * E.g. avoid liberal use of new-lines, odd variable and method names, random indentation, etc...
-* Test cases are not required
+## Overview
 
-## Problem Statement
+This project exposes employee data through a secure REST API that can be consumed by the Employees-R-US SaaS platform via webhooks.
 
-Your employer has recently purchased a license to top-tier SaaS platform, Employees-R-US, to off-load all employee management responsibilities.
-Unfortunately, your company's product has an existing employee management solution that is tightly coupled to other services and therefore 
-cannot be replaced whole-cloth. Product and Development leads in your department have decided it would be best to interface
-the existing employee management solution with the commercial offering from Employees-R-US for the time being until all employees can be
-migrated to the new SaaS platform.
+Because the company’s existing employee management system is tightly coupled with other internal services, replacing it outright is not feasible. Instead, this API acts as a secure integration layer between the internal system and the external SaaS platform while migration occurs.
 
-Your ask is to expose employee information as a protected, secure REST API for consumption by Employees-R-US web hooks.
-The initial REST API will consist of 3 endpoints, listed in the following section. If for any reason the implementation 
-of an endpoint is problematic, the team lead will accept **pseudo-code** and a pertinent description (e.g. java-doc) of intent.
+With this implementation, we prioritize:
 
-Good luck!
+- Practical and maintainable design
+- Clear separation of concerns
+- Clean and readable code
 
-## Endpoints to implement (API module)
+## Design and Architecture:
 
-_See `com.challenge.api.controller.EmployeeController` for details._
+The application follows a layered architecture.
 
-getAllEmployees()
+Controller -> Service Layer -> Data Store
 
-    output - list of employees
-    description - this should return all employees, unfiltered
+### Controller Layer
 
-getEmployeeByUuid(...)
+**EmployeeController**
+Responsible for:
 
-    path variable - employee UUID
-    output - employee
-    description - this should return a single employee based on the provided employee UUID
+- Mapping HTTP requests to endpoints
+- Returning appropriate HTTP responses
 
-createEmployee(...)
+This layer is simple and keeps logic in the service layer.
 
-    request body - attributes necessary to create an employee
-    output - employee
-    description - this should return a single employee, if created, otherwise error
+### Service Layer
 
-## Code Formatting
+**EmployeeService**
 
-This project utilizes Gradle plugin [Diffplug Spotless](https://github.com/diffplug/spotless/tree/main/plugin-gradle) to enforce format
-and style guidelines with every build.
+Responsible for:
 
-To format code according to style guidelines, you can run **spotlessApply** task.
-`./gradlew spotlessApply`
+- Logic and validation
+- Managing employee data
+- Handling data creation and retrieval
+- Ensuring thread-safe operations
 
-The spotless plugin will also execute check-and-validation tasks as part of the gradle **build** task.
-`./gradlew build`
+This layer isolates the main logic of the application, making the system easier to maintain and test.
+
+### Data Store
+
+An in-memory `ConcurrentHashMap<UUID, Employee>` is used as the employee storage.
+
+Why this approach:
+
+- Concurrent request and responses
+- Simple enough to demonstrate how the API works while avoiding complexity
+- Easy to replace with an actual database if needed.
+
+In an actual production system, a database would be used instead of a hashmap.
+
+## Implemented Endpoints
+
+### Get All Employees
+
+**GET** `/employees`
+
+Returns a list of all employees.
+
+**Response:** `200 OK`
+
+### Get Employee by UUID
+
+**GET** `/employees/{uuid}`
+
+Returns a single employee based on the provided UUID.
+**Responses:**
+
+- 200 OK — employee found
+- 404 NOT FOUND — employee does not exist
+
+### Create Employee
+
+**POST** `/employees`
+
+Creates a new employee.
+**Responses:**
+
+- 201 CREATED — employee successfully created
+- 400 BAD REQUEST — invalid request body
+
+### Additional EndPoints Beyond Original Specification
+
+To make the API more practical and demonstrate extensibility, I added additional endpoints that went beyond the original requirements.
+
+### Update Employee
+
+**PATCH** `/employees/{uuid}`
+
+Updates one or more employee fields.
+**Responses:**
+
+- 200 OK — employee updated
+- 404 NOT FOUND — employee does not exist
+- 400 BAD REQUEST — invalid update data
+
+### Delete Employee
+
+**DELETE** `/employees/{uuid}`
+
+Deletes an employee.
+
+**Responses:**
+
+- 204 NO CONTENT — employee deleted
+- 404 NOT FOUND — employee does not exist
+
+### Data Validation & Error Handling
+
+I added input validation and error handling to ensure predictable API behavior.
+
+### Validation
+
+- Required fields must be present when creating employees
+- Request bodies must match expected structure
+- Invalid UUID formats are rejected
+
+### Error Handling
+
+The API returns meaningful HTTP status codes:
+
+- 400 BAD REQUEST for invalid input
+- 404 NOT FOUND when a resource does not exist
+- 201 CREATED when a resource is successfully created
+- 204 NO CONTENT when a resource is deleted
