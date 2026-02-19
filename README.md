@@ -151,15 +151,15 @@ By default, the API will be available at:
 
 - Note: Replace {uuid} in the exampes below with a real UUID (without using {})
 
-## Get All Employees
+### Get All Employees
 
 - curl -i http://localhost:8080/employees
 
-## Get Employee by UUID
+### Get Employee by UUID
 
 - curl -i http://localhost:8080/employees/{uuid}
 
-## Create Employee
+### Create Employee
 
 curl -i -X POST http://localhost:8080/employees \
  -H "Content-Type: application/json" \
@@ -169,7 +169,7 @@ curl -i -X POST http://localhost:8080/employees \
 "email": "daniel.rendon@example.com"
 }'
 
-## Update Employee
+### Update Employee
 
 curl -i -X PATCH http://localhost:8080/employees/{uuid} \
  -H "Content-Type: application/json" \
@@ -177,6 +177,6 @@ curl -i -X PATCH http://localhost:8080/employees/{uuid} \
 "firstName": "Danny"
 }'
 
-## Delete Employee
+### Delete Employee
 
 - curl -i -X DELETE http://localhost:8080/employees/{uuid}
