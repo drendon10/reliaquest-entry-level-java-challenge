@@ -129,3 +129,52 @@ The API returns meaningful HTTP status codes:
 - 404 NOT FOUND when a resource does not exist
 - 201 CREATED when a resource is successfully created
 - 204 NO CONTENT when a resource is deleted
+
+## Build, Run, and Format
+
+This project uses the Diffplug Spotless Gradle plugin for consistent formatting.
+
+To build, run:
+./gradlew spotlessApply
+./gradlew build
+
+To run the API, run:
+./gradlew bootRun
+
+By default, the API will be available at:
+
+- http://localhost:8080
+
+### Example Usage (curl)
+
+- Note: Replace {uuid} in the exampes below with a real UUID (without using {})
+
+## Get All Employees
+
+- curl -i http://localhost:8080/employees
+
+## Get Employee by UUID
+
+- curl -i http://localhost:8080/employees/{uuid}
+
+## Create Employee
+
+curl -i -X POST http://localhost:8080/employees \
+ -H "Content-Type: application/json" \
+ -d '{
+"firstName": "Daniel",
+"lastName": "Rendon",
+"email": "daniel.rendon@example.com"
+}'
+
+## Update Employee
+
+curl -i -X PATCH http://localhost:8080/employees/{uuid} \
+ -H "Content-Type: application/json" \
+ -d '{
+"firstName": "Danny"
+}'
+
+## Delete Employee
+
+- curl -i -X DELETE http://localhost:8080/employees/{uuid}
