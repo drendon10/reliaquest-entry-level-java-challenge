@@ -43,7 +43,7 @@ This layer isolates the main logic of the application, making the system easier 
 
 ### Data Store
 
-An in-memory `ConcurrentHashMap<UUID, Employee>` is used as the employee storage.
+An in-memory ConcurrentHashMap<UUID, Employee> is used as the employee storage.
 
 Why this approach:
 
@@ -57,15 +57,15 @@ In an actual production system, a database would be used instead of a hashmap.
 
 ### Get All Employees
 
-**GET** `/employees`
+**GET** /employees
 
 Returns a list of all employees.
 
-**Response:** `200 OK`
+**Response:** 200 OK
 
 ### Get Employee by UUID
 
-**GET** `/employees/{uuid}`
+**GET** /employees/{uuid}
 
 Returns a single employee based on the provided UUID.
 **Responses:**
@@ -75,7 +75,7 @@ Returns a single employee based on the provided UUID.
 
 ### Create Employee
 
-**POST** `/employees`
+**POST** /employees
 
 Creates a new employee.
 **Responses:**
@@ -89,7 +89,7 @@ To make the API more practical and demonstrate extensibility, I added additional
 
 ### Update Employee
 
-**PATCH** `/employees/{uuid}`
+**PATCH** /employees/{uuid}
 
 Updates one or more employee fields.
 **Responses:**
@@ -100,7 +100,7 @@ Updates one or more employee fields.
 
 ### Delete Employee
 
-**DELETE** `/employees/{uuid}`
+**DELETE** /employees/{uuid}
 
 Deletes an employee.
 
